@@ -7,58 +7,71 @@ function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
   const lockJson = parseSyml(lockFile);
 
-  Object.keys(lockJson)
-    .filter((dependency) => {
-      return dependency.includes("@workspace:");
-    })
-    .forEach((packageVersion) => {
-      const {
-        dependencies,
-        dependenciesMeta,
-        peerDependencies,
-        peerDependenciesMeta,
-        resolution,
-      } = lockJson[packageVersion];
-      const [name, dirPath] = resolution.trim().split("@workspace:");
-      const packageJsonPath = path.join(dirPath, `package.json`);
+  const workspacePackages = Object.keys(lockJson).filter((dependency) => {
+    return dependency.includes("@workspace:");
+  });
 
-      const { workspaces, packageManager } = JSON.parse(
-        fs.readFileSync(packageJsonPath).toString()
-      );
+  const packagesConfig = workspacePackages
+    .map((packageVersion) => {
+      const [, dirPath] = lockJson[packageVersion].resolution
+        .trim()
+        .split("@workspace:");
 
-      /**
-       * @type {Record<string, any>}
-       */
-      const optionalDependencies = {};
-
-      if (dependenciesMeta) {
-        Object.keys(dependenciesMeta).forEach((key) => {
-          optionalDependencies[key] = dependencies[key];
-          delete dependencies[key];
-        });
+      if (dirPath === ".") {
+        return null;
       }
+      return dirPath;
+    })
+    .filter(Boolean);
 
-      const packageJson = {
-        name,
-        version: "0.0.0",
-        workspaces,
-        description: "**DON'T COMMIT** Generated file for caching",
-        private: true,
-        dependencies,
-        optionalDependencies,
-        peerDependencies,
-        peerDependenciesMeta,
-        packageManager,
-      };
+  workspacePackages.forEach((packageVersion) => {
+    const {
+      dependencies,
+      dependenciesMeta,
+      peerDependencies,
+      peerDependenciesMeta,
+      resolution,
+    } = lockJson[packageVersion];
+    const [name, dirPath] = resolution.trim().split("@workspace:");
+    const packageJsonPath = path.join(dirPath, `package.json`);
 
-      fs.mkdirSync(dirPath, {
-        recursive: true,
+    /**
+     * @type {Record<string, any>}
+     */
+    const optionalDependencies = {};
+
+    if (dependenciesMeta) {
+      Object.keys(dependenciesMeta).forEach((key) => {
+        optionalDependencies[key] = dependencies[key];
+        delete dependencies[key];
       });
-      fs.writeFileSync(
-        packageJsonPath,
-        `${JSON.stringify(packageJson, null, 2)}\r`
-      );
+    }
+
+    const packageJson = {
+      name,
+      version: "0.0.0",
+      description: "**DON'T COMMIT** Generated file for caching",
+      private: true,
+      dependencies,
+      optionalDependencies,
+      peerDependencies,
+      peerDependenciesMeta,
+    };
+
+    if (dirPath === ".") {
+      packageJson.workspaces = {
+        packages: packagesConfig,
+      };
+    }
+
+    fs.mkdirSync(dirPath, {
+      recursive: true,
     });
+    fs.writeFileSync(
+      packageJsonPath,
+      `${JSON.stringify(packageJson, null, 2)}\r`
+    );
+  });
 }
 
 if (require.main === module) {
