@@ -1,0 +1,22 @@
+{
+  "name": "yarn-lock-to-package-json",
+  "version": "0.1.0",
+  "packageManager": "yarn@3.3.0",
+  "main": "index.js",
+  "bin": "index.js",
+  "dependencies": {
+    "@yarnpkg/parsers": "^3.0.0-rc.32"
+  },
+  "author": "Rohit Gohri <code@rohit.page>",
+  "bugs": {
+    "url": "https://github.com/rohit-gohri/yarn-lock-to-package-json/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rohit-gohri/yarn-lock-to-package-json.git"
+  },
+  "homepage": "https://github.com/rohit-gohri/yarn-lock-to-package-json",
+  "engines": {
+    "node": ">=12"
+  }
+}
