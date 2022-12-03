@@ -1,5 +1,7 @@
 # yarn-lock-to-package-json
 
+[![npm](https://img.shields.io/npm/v/yarn-lock-to-package-json)](https://www.npmjs.com/package/yarn-lock-to-package-json)
+
 A simple script to be used in Dockerfile to do yarn install without copying all `package.json`s in a monorepo workspace. Use case inspired by [pnpm's fetch command](https://pnpm.io/cli/fetch) but for Yarn Berry.
 
 ## Usage in Dockerfile
