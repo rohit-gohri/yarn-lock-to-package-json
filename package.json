@@ -4,6 +4,11 @@
   "packageManager": "yarn@3.3.0",
   "main": "index.js",
   "bin": "index.js",
+  "files": [
+    "index.js",
+    "README.md",
+    "package.json"
+  ],
   "dependencies": {
     "@yarnpkg/parsers": "^3.0.0-rc.32"
   },
