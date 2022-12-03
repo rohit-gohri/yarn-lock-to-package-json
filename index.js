@@ -68,7 +68,7 @@ function main() {
     });
     fs.writeFileSync(
       packageJsonPath,
-      `${JSON.stringify(packageJson, null, 2)}\r`
+      `${JSON.stringify(packageJson, null, 2)}`
     );
   });
 }

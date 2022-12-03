@@ -16,7 +16,7 @@ WORKDIR /workspace
 COPY .yarn ./.yarn
 COPY yarn.lock .yarnrc.yml ./
 
-RUN npx yarn-lock-to-package-json
+RUN yarn dlx yarn-lock-to-package-json
 
 RUN yarn install --immutable
 # ------------------------------------------------------------------------------
