@@ -35,28 +35,27 @@ function main() {
     const [name, dirPath] = resolution.trim().split("@workspace:");
     const packageJsonPath = path.join(dirPath, `package.json`);
 
-    /**
-     * @type {Record<string, any>}
-     */
-    const optionalDependencies = {};
-
-    if (dependenciesMeta) {
-      Object.keys(dependenciesMeta).forEach((key) => {
-        optionalDependencies[key] = dependencies[key];
-        delete dependencies[key];
-      });
-    }
-
     const packageJson = {
       name,
       version: "0.0.0",
       description: "**DON'T COMMIT** Generated file for caching",
       private: true,
       dependencies,
-      optionalDependencies,
       peerDependencies,
       peerDependenciesMeta,
     };
+
+    if (dependenciesMeta) {
+      /**
+       * @type {Record<string, any>}
+       */
+      let optionalDependencies = {};
+      Object.keys(dependenciesMeta).forEach((key) => {
+        optionalDependencies[key] = dependencies[key];
+        delete dependencies[key];
+      });
+      packageJson.optionalDependencies = optionalDependencies;
+    }
 
     if (dirPath === ".") {
       packageJson.workspaces = {
