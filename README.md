@@ -46,3 +46,11 @@ CMD ["yarn", "workspace", "@workspace-name/server", "start"]
 What it does is parse the lockfile and recreate the monorepo structure by creating dummy `package.json` for each package in the workspace. These dummy package.json don't invalidate your docker cache when you change a script or increment a version and so your docker build cache remains valid up to the layer of `RUN yarn install --immutable`.
 
 Test it by copying your `yarn.lock` to a new folder and run `npx yarn-lock-to-package-json`.
+
+### Motivation
+
+These existing issues in yarn
+
+- [Install without package.json](https://github.com/yarnpkg/yarn/issues/4813)
+- [Fetch dependencies from yarn.lock only](https://github.com/yarnpkg/berry/issues/4529)
+- [A command to just download and cache dependencies from lockfile](https://github.com/yarnpkg/berry/discussions/4380)
