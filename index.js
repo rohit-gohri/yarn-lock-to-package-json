@@ -78,6 +78,7 @@ module.exports = function main() {
           if(dependency===dependency2){
             return true;
           }
+          // we take only the dependencies that is not present multiple times in the lock file
           return dependency2.split(",").map(dep=>dep.trim().split(":")[0]).every(dep=>dep !== key);
         });
       }).reduce((resolutions, dependency) => {
