@@ -1,6 +1,6 @@
 {
   "name": "yarn-lock-to-package-json",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "packageManager": "yarn@3.3.0",
   "main": "index.js",
   "bin": "cli.js",
