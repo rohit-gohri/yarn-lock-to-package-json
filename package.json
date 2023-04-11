@@ -6,6 +6,7 @@
   "bin": "cli.js",
   "files": [
     "index.js",
+    "cli.js",
     "README.md",
     "package.json"
   ],
