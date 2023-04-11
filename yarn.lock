@@ -66,6 +66,6 @@ __metadata:
   dependencies:
     "@yarnpkg/parsers": ^3.0.0-rc.32
   bin:
-    yarn-lock-to-package-json: index.js
+    yarn-lock-to-package-json: cli.js
   languageName: unknown
   linkType: soft
