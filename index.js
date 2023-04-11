@@ -61,6 +61,29 @@ function main() {
       packageJson.workspaces = {
         packages: packagesConfig,
       };
+      const lockJsonKey = Object.keys(lockJson)
+      packageJson.resolutions = lockJsonKey.filter((dependency) => {
+        if(dependency.includes("@workspace:")){
+          return false;
+        }
+        if(dependency.includes(", ")){
+          return false;
+        }
+        if(!dependency.includes("@npm:")){
+          return false;
+        }
+        const [key] = dependency.split(":")
+        return lockJsonKey.every(dependency2=>{
+          if(dependency===dependency2){
+            return true;
+          }
+          return dependency2.split(",").map(dep=>dep.trim().split(":")[0]).every(dep=>dep !== key);
+        });
+      }).reduce((resolutions, dependency) => {
+        const [key, version] = dependency.trim().split("@npm:");
+        resolutions[key] = version;
+        return resolutions
+      }, {});
     }
 
     fs.mkdirSync(dirPath, {
