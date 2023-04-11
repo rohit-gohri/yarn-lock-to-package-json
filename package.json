@@ -1,6 +1,6 @@
 {
   "name": "yarn-lock-to-package-json",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "packageManager": "yarn@3.3.0",
   "main": "index.js",
   "bin": "cli.js",
@@ -8,11 +8,18 @@
     "index.js",
     "cli.js",
     "README.md",
+    "LICENSE",
     "package.json"
   ],
   "dependencies": {
     "@yarnpkg/parsers": "^3.0.0-rc.32"
   },
+  "keywords": [
+    "yarn",
+    "docker",
+    "fetch",
+    "lockfile"
+  ],
   "author": "Rohit Gohri <code@rohit.page>",
   "bugs": {
     "url": "https://github.com/rohit-gohri/yarn-lock-to-package-json/issues"
