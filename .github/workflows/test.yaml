@@ -29,6 +29,7 @@ jobs:
 
       - name: Recreate yarn.locks
         run: |
+          yarn
           yarn node ../../cli.js
           yarn
         working-directory: tests/${{ matrix.tests }}
