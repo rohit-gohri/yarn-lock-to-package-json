@@ -31,6 +31,7 @@ function main() {
       peerDependencies,
       peerDependenciesMeta,
       resolution,
+      bin,
     } = lockJson[packageVersion];
     const [name, dirPath] = resolution.trim().split("@workspace:");
     const packageJsonPath = path.join(dirPath, `package.json`);
@@ -43,6 +44,7 @@ function main() {
       dependencies,
       peerDependencies,
       peerDependenciesMeta,
+      bin,
     };
 
     if (dependenciesMeta) {
