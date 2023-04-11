@@ -1,11 +1,12 @@
 {
   "name": "yarn-lock-to-package-json",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "packageManager": "yarn@3.3.0",
   "main": "index.js",
-  "bin": "index.js",
+  "bin": "cli.js",
   "files": [
     "index.js",
+    "cli.js",
     "README.md",
     "package.json"
   ],

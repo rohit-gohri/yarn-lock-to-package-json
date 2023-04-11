@@ -6,6 +6,7 @@
 !.yarn/versions
 .pnp.*
 
+tests/**/.yarn/*
 # Dependency directories
 node_modules/
 

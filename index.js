@@ -1,9 +1,8 @@
-#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 const { parseSyml } = require("@yarnpkg/parsers");
 
-function main() {
+module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
   const lockJson = parseSyml(lockFile);
 
@@ -31,6 +30,7 @@ function main() {
       peerDependencies,
       peerDependenciesMeta,
       resolution,
+      bin,
     } = lockJson[packageVersion];
     const [name, dirPath] = resolution.trim().split("@workspace:");
     const packageJsonPath = path.join(dirPath, `package.json`);
@@ -43,6 +43,7 @@ function main() {
       dependencies,
       peerDependencies,
       peerDependenciesMeta,
+      bin,
     };
 
     if (dependenciesMeta) {
@@ -94,8 +95,4 @@ function main() {
       `${JSON.stringify(packageJson, null, 2)}\n`
     );
   });
-}
-
-if (require.main === module) {
-  main();
 }

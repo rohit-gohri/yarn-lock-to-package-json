@@ -1,0 +1,10 @@
+{
+  "name": "~dev",
+  "version": "0.0.0",
+  "dependencies": {
+    "tiged": "^2.12.4"
+  },
+  "resolutions": {
+    "tar": "^6.1.9"
+  }
+}

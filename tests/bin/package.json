@@ -1,0 +1,8 @@
+{
+  "name": "~dev",
+  "version": "0.0.0",
+  "dependencies": {
+    "tiged": "^2.12.4"
+  },
+  "bin": "./bin/my-executable"
+}

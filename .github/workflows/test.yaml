@@ -1,0 +1,41 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test-edge-cases:
+    runs-on: ubuntu-latest
+    name: Edge Cases
+    strategy:
+      fail-fast: false
+      matrix:
+        tests:
+          - bin
+          - resolutions
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "yarn"
+
+      - name: 📦 Install dependencies
+        run: yarn install --immutable
+
+      - name: Recreate yarn.locks
+        run: |
+          yarn
+          yarn node ../../cli.js
+          yarn
+        working-directory: tests/${{ matrix.tests }}
+
+      - name: Check diff
+        run: |
+          git checkout package.json
+          git diff --exit-code yarn.lock
+        working-directory: tests/${{ matrix.tests }}
