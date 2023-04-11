@@ -1,9 +1,8 @@
-#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 const { parseSyml } = require("@yarnpkg/parsers");
 
-function main() {
+module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
   const lockJson = parseSyml(lockFile);
 
@@ -71,8 +70,4 @@ function main() {
       `${JSON.stringify(packageJson, null, 2)}\n`
     );
   });
-}
-
-if (require.main === module) {
-  main();
 }
