@@ -1,0 +1,7 @@
+{
+  "name": "~dev",
+  "version": "0.0.0",
+  "dependencies": {
+    "tiged": "patch:tiged@npm%3A2.12.4#./.yarn/patches/tiged-npm-2.12.4-b64a6b9192.patch"
+  }
+}
