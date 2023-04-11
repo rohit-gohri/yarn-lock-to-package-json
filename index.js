@@ -59,33 +59,49 @@ module.exports = function main() {
     }
 
     if (dirPath === ".") {
-      packageJson.workspaces = {
-        packages: packagesConfig,
-      };
-      const lockJsonKey = Object.keys(lockJson)
-      packageJson.resolutions = lockJsonKey.filter((dependency) => {
-        if(dependency.includes("@workspace:")){
-          return false;
-        }
-        if(dependency.includes(", ")){
-          return false;
-        }
-        if(!dependency.includes("@npm:")){
-          return false;
-        }
-        const [key] = dependency.split(":")
-        return lockJsonKey.every(dependency2=>{
-          if(dependency===dependency2){
-            return true;
+      if (packagesConfig.length > 0) {
+        packageJson.workspaces = {
+          packages: packagesConfig,
+        };
+      }
+
+      const lockJsonKey = Object.keys(lockJson);
+      /**
+       * This will add all the dependencies that are not present multiple times in the lock file
+       * as resolutions since we can't differentiate them but adding them unnecessarily has no side effect
+       */
+      packageJson.resolutions = lockJsonKey
+        .filter((dependency) => {
+          if (dependency.includes("@workspace:")) {
+            return false;
           }
-          // we take only the dependencies that is not present multiple times in the lock file
-          return dependency2.split(",").map(dep=>dep.trim().split(":")[0]).every(dep=>dep !== key);
-        });
-      }).reduce((resolutions, dependency) => {
-        const [key, version] = dependency.trim().split("@npm:");
-        resolutions[key] = version;
-        return resolutions
-      }, {});
+          // Ignore if multiple versions of the same package are resolved to a single version
+          // since resolutions overwrites these to a single version
+          if (dependency.includes(", ")) {
+            return false;
+          }
+          if (!dependency.includes("@npm:")) {
+            return false;
+          }
+          const [depName] = dependency.split("@");
+
+          return lockJsonKey.every((dependency2) => {
+            if (dependency === dependency2) {
+              return true;
+            }
+
+            // we take only the dependencies that is not present multiple times in the lock file
+            return dependency2
+              .split(",")
+              .map((dep) => dep.trim().split("@")[0])
+              .every((depName2) => depName2 !== depName);
+          });
+        })
+        .reduce((resolutions, dependency) => {
+          const [key, version] = dependency.trim().split("@npm:");
+          resolutions[key] = version;
+          return resolutions;
+        }, {});
     }
 
     fs.mkdirSync(dirPath, {
@@ -96,4 +112,4 @@ module.exports = function main() {
       `${JSON.stringify(packageJson, null, 2)}\n`
     );
   });
-}
+};
