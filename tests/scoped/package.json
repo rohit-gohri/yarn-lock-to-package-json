@@ -1,0 +1,10 @@
+{
+  "name": "~dev",
+  "version": "0.0.0",
+  "dependencies": {
+    "@modjo-plugins/microservice-oapi": "^1.0.5"
+  },
+  "resolutions": {
+    "@modjo-plugins/microservice-oapi": "latest"
+  }
+}

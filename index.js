@@ -83,7 +83,8 @@ module.exports = function main() {
           if (!dependency.includes("@npm:")) {
             return false;
           }
-          const [depName] = dependency.split("@");
+
+          const depName = dependency.trim().split("@").slice(0,-1).join("@")
 
           return lockJsonKey.every((dependency2) => {
             if (dependency === dependency2) {
@@ -93,7 +94,7 @@ module.exports = function main() {
             // we take only the dependencies that is not present multiple times in the lock file
             return dependency2
               .split(",")
-              .map((dep) => dep.trim().split("@")[0])
+              .map((dep) => dep.trim().split("@").slice(0,-1).join("@"))
               .every((depName2) => depName2 !== depName);
           });
         })
