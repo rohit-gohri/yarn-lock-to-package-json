@@ -16,6 +16,7 @@ jobs:
           - bin
           - patch
           - resolutions
+          - scoped
     steps:
       - uses: actions/checkout@v3
 
