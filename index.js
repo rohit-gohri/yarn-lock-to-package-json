@@ -93,7 +93,7 @@ module.exports = function main() {
             return false;
           }
 
-          const depName = dependency.trim().split("@").slice(0,-1).join("@")
+          const depName = getDepName(dependency)
 
           return lockJsonKey.every((dependency2) => {
             if (dependency === dependency2) {
@@ -103,7 +103,7 @@ module.exports = function main() {
             // we take only the dependencies that is not present multiple times in the lock file
             return dependency2
               .split(",")
-              .map((dep) => dep.trim().split("@").slice(0,-1).join("@"))
+              .map((dep) => getDepName(dep))
               .every((depName2) => depName2 !== depName);
           });
         })
