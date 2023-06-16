@@ -47,6 +47,20 @@ What it does is parse the lockfile and recreate the monorepo structure by creati
 
 Test it by copying your `yarn.lock` to a new folder and run `npx yarn-lock-to-package-json`.
 
+This is the dummy file generated:
+
+```md
+{
+  "name": "@monorepo/package",
+  "version": "0.0.0",
+  "description": "**DON'T COMMIT** Generated file for caching",
+  "private": true,
+  "dependencies": {
+    "typescript": "^4.5.5"
+  }
+}
+```
+
 ### Motivation
 
 These existing issues in yarn
