@@ -3,7 +3,7 @@ name: Tests
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: ["**"]
 
 jobs:
   test-edge-cases:
@@ -17,6 +17,7 @@ jobs:
           - patch
           - resolutions
           - scoped
+          - alias-subdepencies
     steps:
       - uses: actions/checkout@v3
 
