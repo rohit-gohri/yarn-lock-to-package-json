@@ -109,7 +109,7 @@ module.exports = function main() {
         })
         .reduce((resolutions, dependency) => {
           const [key, version] = dependency.trim().split("@npm:");
-          resolutions[key] = version;
+          resolutions[key] = version.includes("@") ? `npm:${version}` : version;
           return resolutions;
         }, {});
     }
