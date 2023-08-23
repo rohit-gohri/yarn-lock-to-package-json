@@ -7,7 +7,6 @@ const supportedProtocols = [
   "portal",
   "link",
 ]
-const supportedProtocolPrefixs = supportedProtocols.map((protocol) => `@${protocol}:`)
 
 module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
@@ -96,7 +95,7 @@ module.exports = function main() {
           if (dependency.includes(", ")) {
             return false;
           }
-          if(!supportedProtocolPrefixs.some((prefix) => dependency.includes(prefix))){
+          if(!protocol.some((protocol) => dependency.includes(`@${protocol}:`))){
             return false;
           }
           const depName = getDepName(dependency)
@@ -114,12 +113,12 @@ module.exports = function main() {
           });
         })
         .reduce((resolutions, dependency) => {
-          supportedProtocolPrefixs.forEach((prefix) => {
-            if(!dependency.includes(prefix)){
+          supportedProtocol.forEach((protocol) => {
+            if(!dependency.includes(`@${protocol}:`)){
               return
             }
             const [key, version] = dependency.trim().split(prefix);
-            resolutions[key] = version;
+            resolutions[key] = version.includes("@") ? `${protocol}:${version}` : version;
           })
           return resolutions;
         }, {});

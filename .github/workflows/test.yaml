@@ -17,6 +17,7 @@ jobs:
           - patch
           - resolutions
           - scoped
+          - alias-subdeps
           - portal
     steps:
       - uses: actions/checkout@v3
