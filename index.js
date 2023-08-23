@@ -95,7 +95,11 @@ module.exports = function main() {
           if (dependency.includes(", ")) {
             return false;
           }
-          if(!protocol.some((protocol) => dependency.includes(`@${protocol}:`))){
+          if (
+            !supportedProtocol.some((protocol) =>
+              dependency.includes(`@${protocol}:`)
+            )
+          ) {
             return false;
           }
           const depName = getDepName(dependency)
