@@ -2,6 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const { parseSyml } = require("@yarnpkg/parsers");
 
+const supportedProtocols = [
+  "npm",
+  "portal",
+  "link",
+]
+
 module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
   const lockJson = parseSyml(lockFile);
@@ -89,10 +95,13 @@ module.exports = function main() {
           if (dependency.includes(", ")) {
             return false;
           }
-          if (!dependency.includes("@npm:")) {
+          if (
+            !supportedProtocols.some((protocol) =>
+              dependency.includes(`@${protocol}:`)
+            )
+          ) {
             return false;
           }
-
           const depName = getDepName(dependency)
 
           return lockJsonKey.every((dependency2) => {
@@ -108,8 +117,23 @@ module.exports = function main() {
           });
         })
         .reduce((resolutions, dependency) => {
-          const [key, version] = dependency.trim().split("@npm:");
-          resolutions[key] = version.includes("@") ? `npm:${version}` : version;
+          supportedProtocols.forEach((protocol) => {
+            if (!dependency.includes(`@${protocol}:`)) {
+              return;
+            }
+            const [key, version] = dependency.trim().split(`@${protocol}:`);
+            switch(protocol) {
+              case "npm":
+                resolutions[key] = version.includes("@")
+                ? `${protocol}:${version}`
+                : version;
+              break
+              case "portal":
+              case "link":
+                resolutions[key] = `${protocol}:${version.split("::")[0]}`
+              break
+            }
+          });
           return resolutions;
         }, {});
     }

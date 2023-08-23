@@ -18,6 +18,8 @@ jobs:
           - resolutions
           - scoped
           - alias-subdeps
+          - portal
+          - link
     steps:
       - uses: actions/checkout@v3
 
