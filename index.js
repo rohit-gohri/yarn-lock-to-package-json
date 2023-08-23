@@ -121,7 +121,7 @@ module.exports = function main() {
             if (!dependency.includes(`@${protocol}:`)) {
               return;
             }
-            const [key, version] = dependency.trim().split(prefix);
+            const [key, version] = dependency.trim().split(`@${protocol}:`);
             resolutions[key] = version.includes("@")
               ? `${protocol}:${version}`
               : version;
