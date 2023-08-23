@@ -96,7 +96,7 @@ module.exports = function main() {
             return false;
           }
           if (
-            !supportedProtocol.some((protocol) =>
+            !supportedProtocols.some((protocol) =>
               dependency.includes(`@${protocol}:`)
             )
           ) {
@@ -117,13 +117,15 @@ module.exports = function main() {
           });
         })
         .reduce((resolutions, dependency) => {
-          supportedProtocol.forEach((protocol) => {
-            if(!dependency.includes(`@${protocol}:`)){
-              return
+          supportedProtocols.forEach((protocol) => {
+            if (!dependency.includes(`@${protocol}:`)) {
+              return;
             }
             const [key, version] = dependency.trim().split(prefix);
-            resolutions[key] = version.includes("@") ? `${protocol}:${version}` : version;
-          })
+            resolutions[key] = version.includes("@")
+              ? `${protocol}:${version}`
+              : version;
+          });
           return resolutions;
         }, {});
     }
