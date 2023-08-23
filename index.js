@@ -2,6 +2,13 @@ const fs = require("fs");
 const path = require("path");
 const { parseSyml } = require("@yarnpkg/parsers");
 
+const supportedProtocols = [
+  "npm",
+  "portal",
+  "link",
+]
+const supportedProtocolPrefixs = supportedProtocols.map((protocol) => `@${protocol}:`)
+
 module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
   const lockJson = parseSyml(lockFile);
@@ -89,10 +96,9 @@ module.exports = function main() {
           if (dependency.includes(", ")) {
             return false;
           }
-          if (!dependency.includes("@npm:")) {
+          if(!supportedProtocolPrefixs.some((prefix) => dependency.includes(prefix))){
             return false;
           }
-
           const depName = getDepName(dependency)
 
           return lockJsonKey.every((dependency2) => {
@@ -108,8 +114,13 @@ module.exports = function main() {
           });
         })
         .reduce((resolutions, dependency) => {
-          const [key, version] = dependency.trim().split("@npm:");
-          resolutions[key] = version;
+          supportedProtocolPrefixs.forEach((prefix) => {
+            if(!dependency.includes(prefix)){
+              return
+            }
+            const [key, version] = dependency.trim().split(prefix);
+            resolutions[key] = version;
+          })
           return resolutions;
         }, {});
     }

@@ -1,0 +1,10 @@
+{
+  "name": "~dev",
+  "version": "0.0.0",
+  "dependencies": {
+    "a-local-portal-lib": "*"
+  },
+  "resolutions": {
+    "a-local-portal-lib": "portal:./a-local-portal-lib"
+  }
+}
