@@ -122,9 +122,17 @@ module.exports = function main() {
               return;
             }
             const [key, version] = dependency.trim().split(`@${protocol}:`);
-            resolutions[key] = version.includes("@")
-              ? `${protocol}:${version}`
-              : version;
+            switch(protocol) {
+              case "npm":
+                resolutions[key] = version.includes("@")
+                ? `${protocol}:${version}`
+                : version;
+              break
+              case "portal":
+              case "link":
+                resolutions[key] = `${protocol}:${version.split("::")[0]}`
+              break
+            }
           });
           return resolutions;
         }, {});
