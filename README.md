@@ -41,6 +41,10 @@ RUN cd apps/server && yarn workspaces focus --production
 CMD ["yarn", "workspace", "@workspace-name/server", "start"]
 ```
 
+## Yarn Plugin
+
+For similar functionality but packaged in a yarn plugin you can check out [yarn-plugin-fetch](https://github.com/devthejo/yarn-plugin-fetch) by [@devthejo](https://github.com/devthejo), it uses this package internally to provide the same feature plus adds workspace focus support and more tools.
+
 ## Working
 
 What it does is parse the lockfile and recreate the monorepo structure by creating dummy `package.json` for each package in the workspace. These dummy package.json don't invalidate your docker cache when you change a script or increment a version and so your docker build cache remains valid up to the layer of `RUN yarn install --immutable`.
