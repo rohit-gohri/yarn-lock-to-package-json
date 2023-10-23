@@ -1,0 +1,10 @@
+diff --git a/LICENSE.md b/LICENSE.md
+index 3934168364063216aa8805f06e3a1a8605133d68..a68fef5bd715c8c638afb294535c2297e7463aaf 100644
+--- a/LICENSE.md
++++ b/LICENSE.md
+@@ -1,3 +1,5 @@
++Hello
++
+ The MIT License (MIT)
+ 
+ Copyright (c) 2010-2020 Robert Kieffer and other contributors

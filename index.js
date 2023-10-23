@@ -2,11 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { parseSyml } = require("@yarnpkg/parsers");
 
-const supportedProtocols = [
-  "npm",
-  "portal",
-  "link",
-]
+const supportedProtocols = ["patch", "npm", "portal", "link"];
 
 module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
@@ -104,17 +100,22 @@ module.exports = function main() {
           }
           const depName = getDepName(dependency)
 
-          return lockJsonKey.every((dependency2) => {
-            if (dependency === dependency2) {
-              return true;
-            }
+          return (
+            dependency.includes("@patch:") ||
+            lockJsonKey.every((dependency2) => {
+              if (dependency === dependency2) {
+                return true;
+              }
 
-            // we take only the dependencies that is not present multiple times in the lock file
-            return dependency2
-              .split(",")
-              .map((dep) => getDepName(dep))
-              .every((depName2) => depName2 !== depName);
-          });
+              return dependency2.split(",").every((dep) => {
+                if (dep.includes("@patch:")) {
+                  return true;
+                }
+                // we take only the dependencies that is not present multiple times in the lock file
+                return getDepName(dep) !== depName;
+              });
+            })
+          );
         })
         .reduce((resolutions, dependency) => {
           supportedProtocols.forEach((protocol) => {
@@ -125,13 +126,18 @@ module.exports = function main() {
             switch(protocol) {
               case "npm":
                 resolutions[key] = version.includes("@")
-                ? `${protocol}:${version}`
-                : version;
-              break
+                  ? `${protocol}:${version}`
+                  : version;
+                break
+              case "patch":
+                if (!dependency.includes("builtin<compat/")) {
+                  resolutions[key] = `${protocol}:${version.split("::")[0]}`;
+                }
+                break
               case "portal":
               case "link":
-                resolutions[key] = `${protocol}:${version.split("::")[0]}`
-              break
+                resolutions[key] = `${protocol}:${version.split("::")[0]}`;
+                break
             }
           });
           return resolutions;

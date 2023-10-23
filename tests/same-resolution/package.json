@@ -1,0 +1,10 @@
+{
+  "name": "~dev",
+  "version": "0.0.0",
+  "dependencies": {
+    "typescript": "^5.0.3"
+  },
+  "resolutions": {
+    "typescript": "^5.0.3"
+  }
+}
