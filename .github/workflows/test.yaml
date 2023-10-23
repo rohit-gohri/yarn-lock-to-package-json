@@ -20,6 +20,8 @@ jobs:
           - alias-subdeps
           - portal
           - link
+          - same-resolution
+          - patch-resolution
     steps:
       - uses: actions/checkout@v3
 
