@@ -5,23 +5,21 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"typescript@npm:^5.0.3":
-  version: 5.2.2
-  resolution: "typescript@npm:5.2.2"
+"uuid@npm:9.0.1":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
   bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
+    uuid: dist/bin/uuid
+  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.0.3#~builtin<compat/typescript>":
-  version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=d73830"
+"uuid@patch:uuid@npm%3A9.0.1#./.yarn/patches/uuid-npm-9.0.1-39a8442bc6.patch::locator=~dev%40workspace%3A.":
+  version: 9.0.1
+  resolution: "uuid@patch:uuid@npm%3A9.0.1#./.yarn/patches/uuid-npm-9.0.1-39a8442bc6.patch::version=9.0.1&hash=98efc2&locator=~dev%40workspace%3A."
   bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
+    uuid: dist/bin/uuid
+  checksum: 9c0db3d0a4bef786384f0c3d095bc218b87679f50159aac8b9650a8b50c9ee9cd491db674db5d87ab764f5d18a955bb8d8e8a34f075474ae7ed3d484d8c43a71
   languageName: node
   linkType: hard
 
@@ -29,6 +27,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "~dev@workspace:."
   dependencies:
-    typescript: ^5.0.3
+    uuid: ^9.0.0
   languageName: unknown
   linkType: soft

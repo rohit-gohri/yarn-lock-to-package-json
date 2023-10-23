@@ -5,6 +5,6 @@
     "uuid": "^9.0.0"
   },
   "resolutions": {
-    "uuid": "patch:uuid@npm%3A9.0.1#~/.yarn/patches/uuid-npm-9.0.1-39a8442bc6.patch"
+    "uuid": "patch:uuid@npm%3A9.0.1#./.yarn/patches/uuid-npm-9.0.1-39a8442bc6.patch"
   }
 }
