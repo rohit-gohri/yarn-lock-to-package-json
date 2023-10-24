@@ -15,13 +15,14 @@ jobs:
         tests:
           - bin
           - patch
+          - patch-monorepo
+          - patch-resolution
           - resolutions
           - scoped
           - alias-subdeps
           - portal
           - link
           - same-resolution
-          - patch-resolution
     steps:
       - uses: actions/checkout@v3
 
