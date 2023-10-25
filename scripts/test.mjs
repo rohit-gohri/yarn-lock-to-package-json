@@ -30,8 +30,14 @@ const results = await Promise.allSettled(
   tests.map(
     (test) =>
       $`cd tests/${test} && \
-    yarn && \
+    yarn > /dev/null && \
+    echo "" && \
+    echo "Generating package.json from lockfile" && \
+    echo "" && \
     node ${__dirname}/../cli.js && \
+    echo "" && \
+    echo "Updating lock file based on generated package.json" && \
+    echo "" && \
     yarn && \
     git diff --exit-code yarn.lock
 `
