@@ -108,6 +108,10 @@ module.exports = function main() {
       const dependencyMap = new Map();
       lockJsonKey.forEach((dep) => {
         dep.split(",").forEach((dependency) => {
+          // Ignore yarn's inbuilt applied patches as duplicates
+          if (dependency.includes("builtin<compat/")) {
+            return;
+          }
           const name = getDepName(dependency);
           if (!dependencyMap.has(name)) {
             dependencyMap.set(name, []);
