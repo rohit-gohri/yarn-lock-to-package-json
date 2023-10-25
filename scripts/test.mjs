@@ -49,8 +49,8 @@ const failures = results
 
 if (failures.length > 0) {
   console.log(JSON.stringify(failures, null, 2));
-  throw new Error("Some tests failed");
+  throw new Error(`${failures.length} tests failed`);
 }
 
-console.log("All tests passed");
+console.log(`All tests passed`);
 process.exit(0);
