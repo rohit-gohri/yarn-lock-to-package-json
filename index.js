@@ -4,6 +4,16 @@ const { parseSyml } = require("@yarnpkg/parsers");
 
 const supportedProtocols = ["patch", "npm", "portal", "link"];
 
+const getDepName = (dep) => {
+  let parts = dep.trim().split("@");
+  if (dep.startsWith("@")) {
+    parts = parts.slice(0, 2);
+  } else {
+    parts = parts.slice(0, 1);
+  }
+  return parts.join("@");
+};
+
 module.exports = function main() {
   const lockFile = fs.readFileSync("yarn.lock", "utf8");
   const lockJson = parseSyml(lockFile);
@@ -68,15 +78,23 @@ module.exports = function main() {
       }
 
       const lockJsonKey = Object.keys(lockJson);
-      const getDepName = (dep)=>{
-        let parts = dep.trim().split("@")
-        if(dep.startsWith("@")) {
-          parts = parts.slice(0, 2)
-        } else {
-          parts = parts.slice(0, 1)
+      /**
+       * @type {Map<string, string[]>}
+       */
+      const dependencyMap = new Map();
+      lockJsonKey.forEach((dep) => {
+        if (dep.includes("@patch:")) {
+          return;
         }
-        return parts.join("@")
-      }
+        dep.split(",").forEach((dependency) => {
+          const name = getDepName(dependency);
+          if (!dependencyMap.has(name)) {
+            dependencyMap.set(name, []);
+          }
+          dependencyMap.get(name).push(dependency);
+        });
+      });
+
       /**
        * This will add all the dependencies that are not present multiple times in the lock file
        * as resolutions since we can't differentiate them but adding them unnecessarily has no side effect
@@ -91,31 +109,11 @@ module.exports = function main() {
           if (dependency.includes(", ")) {
             return false;
           }
-          if (
-            !supportedProtocols.some((protocol) =>
-              dependency.includes(`@${protocol}:`)
-            )
-          ) {
-            return false;
-          }
-          const depName = getDepName(dependency)
 
-          return (
-            dependency.includes("@patch:") ||
-            lockJsonKey.every((dependency2) => {
-              if (dependency === dependency2) {
-                return true;
-              }
+          const name = getDepName(dependency);
 
-              return dependency2.split(",").every((dep) => {
-                if (dep.includes("@patch:")) {
-                  return true;
-                }
-                // we take only the dependencies that is not present multiple times in the lock file
-                return getDepName(dep) !== depName;
-              });
-            })
-          );
+          // we take only the dependencies that is not present multiple times in the lock file
+          return dependency.includes("@patch:") || dependencyMap.get(name).length === 1;
         })
         .reduce((resolutions, dependency) => {
           supportedProtocols.forEach((protocol) => {
@@ -123,23 +121,24 @@ module.exports = function main() {
               return;
             }
             const [key, version] = dependency.trim().split(`@${protocol}:`);
-            switch(protocol) {
+            switch (protocol) {
               case "npm":
                 resolutions[key] = version.includes("@")
                   ? `${protocol}:${version}`
                   : version;
-                break
+                break;
               case "patch":
                 if (!dependency.includes("builtin<compat/")) {
                   resolutions[key] = `${protocol}:${version.split("::")[0]}`;
                 }
-                break
+                break;
               case "portal":
               case "link":
                 resolutions[key] = `${protocol}:${version.split("::")[0]}`;
-                break
+                break;
             }
           });
+
           return resolutions;
         }, {});
     }
