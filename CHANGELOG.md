@@ -1,5 +1,13 @@
 # yarn-lock-to-package-json
 
+## 0.3.1
+
+### Patch Changes
+
+- [#18](https://github.com/rohit-gohri/yarn-lock-to-package-json/pull/18) [`7c1f255`](https://github.com/rohit-gohri/yarn-lock-to-package-json/commit/7c1f2558f79d15589f6177f236e9f615e1790ce3) Thanks [@rohit-gohri](https://github.com/rohit-gohri)! - Add new test script
+
+- [#18](https://github.com/rohit-gohri/yarn-lock-to-package-json/pull/18) [`9eb3771`](https://github.com/rohit-gohri/yarn-lock-to-package-json/commit/9eb3771b2502829915cfbd21f235e9b8a64ab88c) Thanks [@rohit-gohri](https://github.com/rohit-gohri)! - Fix patch protocol in monorepo
+
 ## 0.3.0
 
 ### Minor Changes
