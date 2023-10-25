@@ -4,6 +4,9 @@ const { parseSyml } = require("@yarnpkg/parsers");
 
 const supportedProtocols = ["patch", "npm", "portal", "link"];
 
+/**
+ * @param {string} dep 
+ */
 const getDepName = (dep) => {
   let parts = dep.trim().split("@");
   if (dep.startsWith("@")) {
@@ -12,6 +15,27 @@ const getDepName = (dep) => {
     parts = parts.slice(0, 1);
   }
   return parts.join("@");
+};
+
+/**
+ * @param {string} dependency
+ * @param {string} protocol
+ */
+const getKeyVersion = (dependency, protocol) => {
+  const [key, version] = dependency.trim().split(`@${protocol}:`);
+
+  return {
+    key,
+    version,
+  };
+};
+
+/**
+ * @param {string} version
+ */
+const getPatchPath = (version) => {
+  const [, patchPath] = version.split("::")[0].split("#");
+  return patchPath;
 };
 
 module.exports = function main() {
@@ -83,9 +107,6 @@ module.exports = function main() {
        */
       const dependencyMap = new Map();
       lockJsonKey.forEach((dep) => {
-        if (dep.includes("@patch:")) {
-          return;
-        }
         dep.split(",").forEach((dependency) => {
           const name = getDepName(dependency);
           if (!dependencyMap.has(name)) {
@@ -104,6 +125,21 @@ module.exports = function main() {
           if (dependency.includes("@workspace:")) {
             return false;
           }
+
+          // Only take patches if they are root package.json patches
+          if (dependency.includes("@patch:")) {
+            const patchPath = getPatchPath(
+              getKeyVersion(dependency, "patch").version
+            );
+
+            // if no relative path then it's root package.json patch
+            if (!patchPath.match(/(\.\.\/)+/)?.length) {
+              return true;
+            }
+
+            return false;
+          }
+          
           // Ignore if multiple versions of the same package are resolved to a single version
           // since resolutions overwrites these to a single version
           if (dependency.includes(", ")) {
@@ -111,16 +147,20 @@ module.exports = function main() {
           }
 
           const name = getDepName(dependency);
+          // we take the dependencies that is not present multiple times in the lock file
+          if (dependencyMap.get(name).length === 1) {
+            return true;
+          }
 
-          // we take only the dependencies that is not present multiple times in the lock file
-          return dependency.includes("@patch:") || dependencyMap.get(name).length === 1;
+          return false;
         })
         .reduce((resolutions, dependency) => {
           supportedProtocols.forEach((protocol) => {
             if (!dependency.includes(`@${protocol}:`)) {
               return;
             }
-            const [key, version] = dependency.trim().split(`@${protocol}:`);
+            const { key, version } = getKeyVersion(dependency, protocol);
+
             switch (protocol) {
               case "npm":
                 resolutions[key] = version.includes("@")
