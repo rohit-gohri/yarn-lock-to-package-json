@@ -9,7 +9,9 @@
 
 /// <reference types="zx/globals" />
 
-$.verbose = false;
+const { verbose, test: only, clean = true } = argv;
+
+$.verbose = !!verbose;
 
 const tests = [
   "bin",
@@ -22,7 +24,7 @@ const tests = [
   "portal",
   "link",
   "same-resolution",
-];
+].filter(test => !only || test === only);
 
 const results = await Promise.allSettled(
   tests.map(
@@ -36,7 +38,9 @@ const results = await Promise.allSettled(
   )
 );
 
-await $`git checkout tests`;
+if (clean !== "false") {
+  await $`git checkout tests`;
+}
 
 const failures = results
   .map((res, index) => {
