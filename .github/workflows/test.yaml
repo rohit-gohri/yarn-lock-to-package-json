@@ -9,19 +9,6 @@ jobs:
   test-edge-cases:
     runs-on: ubuntu-latest
     name: Edge Cases
-    strategy:
-      fail-fast: false
-      matrix:
-        tests:
-          - bin
-          - patch
-          - resolutions
-          - scoped
-          - alias-subdeps
-          - portal
-          - link
-          - same-resolution
-          - patch-resolution
     steps:
       - uses: actions/checkout@v3
 
@@ -34,15 +21,5 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install --immutable
 
-      - name: Recreate yarn.locks
-        run: |
-          yarn
-          yarn node ../../cli.js
-          yarn
-        working-directory: tests/${{ matrix.tests }}
-
-      - name: Check diff
-        run: |
-          git checkout package.json
-          git diff --exit-code yarn.lock
-        working-directory: tests/${{ matrix.tests }}
+      - name: Run tests
+        run: yarn test --verbose
