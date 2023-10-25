@@ -38,11 +38,19 @@ const results = await Promise.allSettled(
 
 await $`git checkout tests`;
 
-const failures = results.filter((result) => result.status === "rejected");
+const failures = results
+  .map((res, index) => {
+    return {
+      name: tests[index],
+      ...res,
+    };
+  })
+  .filter((result) => result.status === "rejected");
 
 if (failures.length > 0) {
   console.log(JSON.stringify(failures, null, 2));
   throw new Error("Some tests failed");
 }
 
+console.log("All tests passed");
 process.exit(0);
