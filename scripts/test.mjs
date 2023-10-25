@@ -13,7 +13,7 @@ const { verbose, test: only, clean = true } = argv;
 
 $.verbose = !!verbose;
 
-const tests = [
+const all = [
   "bin",
   "patch",
   "patch-monorepo",
@@ -24,12 +24,15 @@ const tests = [
   "portal",
   "link",
   "same-resolution",
-].filter(test => !only || test === only);
+];
 
-const results = await Promise.allSettled(
-  tests.map(
-    (test) =>
-      $`cd tests/${test} && \
+const tests = all.filter((test) => !only || test === only);
+
+const results = (
+  await Promise.allSettled(
+    tests.map(
+      (test) =>
+        $`cd tests/${test} && \
     yarn > /dev/null && \
     echo "" && \
     echo "Generating package.json from lockfile" && \
@@ -41,26 +44,32 @@ const results = await Promise.allSettled(
     yarn && \
     git diff --exit-code yarn.lock
 `
+    )
   )
-);
+).map((res, index) => {
+  return {
+    name: tests[index],
+    ...res,
+  };
+});
 
 if (clean !== "false") {
   await $`git checkout tests`;
 }
 
-const failures = results
-  .map((res, index) => {
-    return {
-      name: tests[index],
-      ...res,
-    };
-  })
-  .filter((result) => result.status === "rejected");
+const failures = results.filter((result) => result.status === "rejected");
+
+const success = results.filter((result) => result.status === "fulfilled");
+
+console.log(`${success.length}/${all.length} tests passed, ${failures.length}/${all.length} tests failed, ${all.length - results.length}/${all.length} tests skipped`);
+
+if (results.length === 0) {
+  throw new Error("No tests to run");
+}
 
 if (failures.length > 0) {
   console.log(JSON.stringify(failures, null, 2));
   throw new Error(`${failures.length} tests failed`);
 }
 
-console.log(`All tests passed`);
 process.exit(0);
