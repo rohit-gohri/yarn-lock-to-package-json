@@ -1093,15 +1093,15 @@ __metadata:
     "@changesets/changelog-github": ^0.5.0
     "@changesets/cli": ^2.27.12
     "@yarnpkg/parsers": ^3.0.2
-    zx: ^8.2.1
+    zx: ^8.3.2
   bin:
     yarn-lock-to-package-json: cli.js
   languageName: unknown
   linkType: soft
 
-"zx@npm:^8.2.1":
-  version: 8.2.1
-  resolution: "zx@npm:8.2.1"
+"zx@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "zx@npm:8.3.2"
   dependencies:
     "@types/fs-extra": ">=11"
     "@types/node": ">=20"
@@ -1112,6 +1112,6 @@ __metadata:
       optional: true
   bin:
     zx: build/cli.js
-  checksum: bbb344152a4f0723950fe94c6cbc90d7467a8b06b46d9c45c449a29fa42b2699145977abd9bbf2b651df1e29856b7769de1f74088a0ea13984b9a04f62aa5390
+  checksum: adb324657576d4b4c110142bffedad840ea36a6a14f67ded473ad5a39e5de9b178b269e96fa9355d9c7ae743519f4fb0e70c1b2a6dbe9a8382fb237f24c55bc6
   languageName: node
   linkType: hard
