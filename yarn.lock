@@ -58,14 +58,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/changelog-github@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "@changesets/changelog-github@npm:0.5.0"
+"@changesets/changelog-github@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@changesets/changelog-github@npm:0.5.1"
   dependencies:
     "@changesets/get-github-info": ^0.6.0
-    "@changesets/types": ^6.0.0
+    "@changesets/types": ^6.1.0
     dotenv: ^8.1.0
-  checksum: 4ab43d8104693f970d878f2b1657ff67b4d4dcb7452ddf118575153bab74286cdfd125381c2ab92b205bce4b2c653c36552138bf2900f7165ac39a868b7fe22c
+  checksum: 7a538fcbde5a13522d856e3b29c27685922b25c1ab268a735eaddf078045a97f2ebc3ba54a610147266acaadcab939f5c01a172e38bb9adf0128fea886a50fce
   languageName: node
   linkType: hard
 
@@ -254,6 +254,13 @@ __metadata:
   version: 6.0.0
   resolution: "@changesets/types@npm:6.0.0"
   checksum: d528b5d712f62c26ea422c7d34ccf6eac57a353c0733d96716db3c796ecd9bba5d496d48b37d5d46b784dc45b69c06ce3345fa3515df981bb68456cad68e6465
+  languageName: node
+  linkType: hard
+
+"@changesets/types@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "@changesets/types@npm:6.1.0"
+  checksum: 2d01231ddb835b48f9c7963a92ffee7ff347be407cdd52b2a9dcfd2a6e75f2ba13d3009d954a8bca4b622d4cac369f86b496ee9c55f5b788e295ca2d3cba4b94
   languageName: node
   linkType: hard
 
@@ -1090,7 +1097,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "yarn-lock-to-package-json@workspace:."
   dependencies:
-    "@changesets/changelog-github": ^0.5.0
+    "@changesets/changelog-github": ^0.5.1
     "@changesets/cli": ^2.27.12
     "@yarnpkg/parsers": ^3.0.2
     zx: ^8.3.2
