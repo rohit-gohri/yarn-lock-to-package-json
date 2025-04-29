@@ -14,13 +14,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/apply-release-plan@npm:^7.0.10":
-  version: 7.0.10
-  resolution: "@changesets/apply-release-plan@npm:7.0.10"
+"@changesets/apply-release-plan@npm:^7.0.12":
+  version: 7.0.12
+  resolution: "@changesets/apply-release-plan@npm:7.0.12"
   dependencies:
     "@changesets/config": ^3.1.1
     "@changesets/get-version-range-type": ^0.4.0
-    "@changesets/git": ^3.0.2
+    "@changesets/git": ^3.0.4
     "@changesets/should-skip-package": ^0.1.2
     "@changesets/types": ^6.1.0
     "@manypkg/get-packages": ^1.1.3
@@ -31,7 +31,7 @@ __metadata:
     prettier: ^2.7.1
     resolve-from: ^5.0.0
     semver: ^7.5.3
-  checksum: 4a9d5ddd2a151432ba7d139351cf4e2622e34d13094da29f69b9f3fe8f0dd086244112e749c0b1e0430681fc8917a6ed5beb9efa453fa33f0b4b79e4758f8c6d
+  checksum: 4f5ea17eb62edb8d5a05c834759a26a6d88f9d33165429c062991348ed9fc0a35c4287e226a942cea4957ebcad6ced81bff5e78bb1431f9485c7b230750233a6
   languageName: node
   linkType: hard
 
@@ -69,21 +69,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/cli@npm:^2.28.1":
-  version: 2.28.1
-  resolution: "@changesets/cli@npm:2.28.1"
+"@changesets/cli@npm:^2.29.2":
+  version: 2.29.2
+  resolution: "@changesets/cli@npm:2.29.2"
   dependencies:
-    "@changesets/apply-release-plan": ^7.0.10
+    "@changesets/apply-release-plan": ^7.0.12
     "@changesets/assemble-release-plan": ^6.0.6
     "@changesets/changelog-git": ^0.2.1
     "@changesets/config": ^3.1.1
     "@changesets/errors": ^0.2.0
     "@changesets/get-dependents-graph": ^2.1.3
-    "@changesets/get-release-plan": ^4.0.8
-    "@changesets/git": ^3.0.2
+    "@changesets/get-release-plan": ^4.0.10
+    "@changesets/git": ^3.0.4
     "@changesets/logger": ^0.1.1
     "@changesets/pre": ^2.0.2
-    "@changesets/read": ^0.6.3
+    "@changesets/read": ^0.6.5
     "@changesets/should-skip-package": ^0.1.2
     "@changesets/types": ^6.1.0
     "@changesets/write": ^0.4.0
@@ -103,7 +103,7 @@ __metadata:
     term-size: ^2.1.0
   bin:
     changeset: bin.js
-  checksum: d30347d2bc1564dc39067ef7e1826ca4f24f4a1cce4e25b4b45120cda9063c08e1996c1372ed2c5288d9ade324d248defb17739826381f08618e17117d0ff8db
+  checksum: 2de91f31c6951aac0be191c657a82f9cde916872829ae1e393ceb518a6a7678b8dec97f212af7289bb66c8d9c2fa43f658fc20c84807d926f58a4eb1e444255e
   languageName: node
   linkType: hard
 
@@ -153,17 +153,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/get-release-plan@npm:^4.0.8":
-  version: 4.0.8
-  resolution: "@changesets/get-release-plan@npm:4.0.8"
+"@changesets/get-release-plan@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "@changesets/get-release-plan@npm:4.0.10"
   dependencies:
     "@changesets/assemble-release-plan": ^6.0.6
     "@changesets/config": ^3.1.1
     "@changesets/pre": ^2.0.2
-    "@changesets/read": ^0.6.3
+    "@changesets/read": ^0.6.5
     "@changesets/types": ^6.1.0
     "@manypkg/get-packages": ^1.1.3
-  checksum: 4ae87ddc45fe6c48f42c9ef3292e6fa390d4a88baa0470788923ed45a751b1c76e45d4ba35a885565743ddbf8035c131efd4f2695f5b84852bbc83ffeb51550b
+  checksum: 1b7ad2c972f070aa4db70c364ce8ed6ad8dbb309b859d8bf502516f88094a59b2d4989c027c8f32f32dedff9d60c55fd93ecbfe25db3d023fcb9b569a8ea32b4
   languageName: node
   linkType: hard
 
@@ -174,16 +174,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/git@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@changesets/git@npm:3.0.2"
+"@changesets/git@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@changesets/git@npm:3.0.4"
   dependencies:
     "@changesets/errors": ^0.2.0
     "@manypkg/get-packages": ^1.1.3
     is-subdir: ^1.1.1
     micromatch: ^4.0.8
     spawndamnit: ^3.0.1
-  checksum: 56d15fd74881fccd7d46aa8e4d6b808e8d5a349103a5a54f2dd52d91a17056b271b04c28f7709fb162bab48ecaee2f51678fca01ed77be5a8392bf8efa6340c7
+  checksum: a74067962c1aed19a6ccda7621b0cb4815988d2fa58e17e5c5ad348081caaf4828beb3be80c55956f87a94a1da167e268948613bf4fb6c31440dbd2d525563c2
   languageName: node
   linkType: hard
 
@@ -218,18 +218,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/read@npm:^0.6.3":
-  version: 0.6.3
-  resolution: "@changesets/read@npm:0.6.3"
+"@changesets/read@npm:^0.6.5":
+  version: 0.6.5
+  resolution: "@changesets/read@npm:0.6.5"
   dependencies:
-    "@changesets/git": ^3.0.2
+    "@changesets/git": ^3.0.4
     "@changesets/logger": ^0.1.1
     "@changesets/parse": ^0.4.1
     "@changesets/types": ^6.1.0
     fs-extra: ^7.0.1
     p-filter: ^2.1.0
     picocolors: ^1.1.0
-  checksum: 0b9c7babadfac948b52a4e18e7627f24306e697b87eb3ee48ec1aeea5e9dd0790f628160f37a189386b02699dac836a6572ee9c6649a3ff818cbc4bd23d626ae
+  checksum: d8a56e4f6e46ba0520b91520992e87bc2ce4c0c8f5d3c62e532b433f1be9da2e0ca22c6ccf59acdff5550b4dae6060b620b6e64657d4e9ed244e45792dacc506
   languageName: node
   linkType: hard
 
@@ -1042,7 +1042,7 @@ __metadata:
   resolution: "yarn-lock-to-package-json@workspace:."
   dependencies:
     "@changesets/changelog-github": ^0.5.1
-    "@changesets/cli": ^2.28.1
+    "@changesets/cli": ^2.29.2
     "@yarnpkg/parsers": ^3.0.3
     zx: ^8.5.3
   bin:
