@@ -2,6 +2,7 @@
   "name": "~dev",
   "version": "0.0.0",
   "dependencies": {
-    "@isaacs/cliui": "npm:8.0.2"
+    "@isaacs/cliui": "npm:8.0.2",
+    "@isaacs/cliui-9": "npm:cliui@9.0.1"
   }
 }
