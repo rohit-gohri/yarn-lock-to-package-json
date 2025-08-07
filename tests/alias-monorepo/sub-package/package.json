@@ -1,0 +1,8 @@
+{
+  "name": "sub-package",
+  "version": "0.0.0",
+  "dependencies": {
+    "cliui-8": "npm:cliui@8.0.1",
+    "cliui-9": "npm:cliui@9.0.1"
+  }
+}
