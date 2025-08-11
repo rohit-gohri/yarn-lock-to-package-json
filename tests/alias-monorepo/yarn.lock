@@ -145,7 +145,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sub-package-2@workspace:sub-package-2"
   dependencies:
-    cliui: ^8.0.1
+    cliui: ^8.0.0
   languageName: unknown
   linkType: soft
 
@@ -184,6 +184,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "~dev@workspace:."
   dependencies:
-    cliui: ^8.0.0
+    cliui: ^8.0.1
   languageName: unknown
   linkType: soft
