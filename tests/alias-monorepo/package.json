@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "workspaces": {
     "packages": [
+      "./local-package",
       "./sub-package",
       "./sub-package-2",
       "./sub-package-3"

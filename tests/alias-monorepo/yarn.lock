@@ -73,7 +73,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cliui-8@npm:cliui@^8.0.0, cliui-8@npm:cliui@^8.0.1, cliui@npm:^8.0.1":
+"cliui-8@npm:cliui@^8.0.0, cliui-8@npm:cliui@^8.0.1, cliui@npm:^8.0.0, cliui@npm:^8.0.1":
   version: 8.0.1
   resolution: "cliui@npm:8.0.1"
   dependencies:
@@ -146,6 +146,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"local-package@workspace:*, local-package@workspace:local-package":
+  version: 0.0.0-use.local
+  resolution: "local-package@workspace:local-package"
+  dependencies:
+    cliui: ^8.0.0
+  languageName: unknown
+  linkType: soft
+
 "photo-frame@npm:1.0.1":
   version: 1.0.1
   resolution: "photo-frame@npm:1.0.1"
@@ -212,6 +220,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sub-package-3@workspace:sub-package-3"
   dependencies:
+    local-package: "workspace:*"
     photo-frame: 1.0.1
   languageName: unknown
   linkType: soft
