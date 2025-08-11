@@ -5,6 +5,33 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@types/bun@npm:latest":
+  version: 1.2.20
+  resolution: "@types/bun@npm:1.2.20"
+  dependencies:
+    bun-types: 1.2.20
+  checksum: 69c9eed6fb19f0ee50d01cecba2f6dc1b54e08a220d2263b15177fc699ffec0ce41d3ad2a405e70f99f333e8bd5957fb95314a4e6a1b71f0b767252a3022d10c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:*":
+  version: 24.2.1
+  resolution: "@types/node@npm:24.2.1"
+  dependencies:
+    undici-types: ~7.10.0
+  checksum: d7a12a35bcb6ade13787bd9b40d8f59b96170f228dfbd19326170b4df2a66ae86cf21eec6867e92f979405235431e580a9668b167aa3ce8e89531c00792551d3
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.14.12":
+  version: 20.19.10
+  resolution: "@types/node@npm:20.19.10"
+  dependencies:
+    undici-types: ~6.21.0
+  checksum: e294ec0d37ce5a1ae9e4c255ef837b584d793a4d2f89472d580024a4c008de0d5df595c919e96e95fcdf56bf55d567213f90c0c5874b369a30526bedfaa3f418
+  languageName: node
+  linkType: hard
+
 "ansi-regex@npm:^5.0.1":
   version: 5.0.1
   resolution: "ansi-regex@npm:5.0.1"
@@ -35,7 +62,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cliui-8@npm:cliui@^8.0.0, cliui-8@npm:cliui@^8.0.1, cliui@npm:^8.0.0":
+"bun-types@npm:1.2.20":
+  version: 1.2.20
+  resolution: "bun-types@npm:1.2.20"
+  dependencies:
+    "@types/node": "*"
+  peerDependencies:
+    "@types/react": ^19
+  checksum: 5f3c55952b056ee796757dbbddf3d46bf19ff030a6b5f004b45d3644469296dc58338b15b98298375f392bd1d890e6e0a1592082dcdd9cca6cb9e4865ab8a2fe
+  languageName: node
+  linkType: hard
+
+"cliui-8@npm:cliui@^8.0.0, cliui@npm:^8.0.0, cliui@npm:^8.0.1":
   version: 8.0.1
   resolution: "cliui@npm:8.0.1"
   dependencies:
@@ -101,6 +139,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kleur@npm:^4.1.5":
+  version: 4.1.5
+  resolution: "kleur@npm:4.1.5"
+  checksum: 1dc476e32741acf0b1b5b0627ffd0d722e342c1b0da14de3e8ae97821327ca08f9fb944542fb3c126d90ac5f27f9d804edbe7c585bf7d12ef495d115e0f22c12
+  languageName: node
+  linkType: hard
+
+"photo-frame@npm:1.0.1":
+  version: 1.0.1
+  resolution: "photo-frame@npm:1.0.1"
+  dependencies:
+    "@types/bun": latest
+    "@types/node": ^20.14.12
+    cliui: ^8.0.1
+    kleur: ^4.1.5
+  bin:
+    photo-frame: bin/index.js
+  checksum: f4bcb3dcab6e341135de927f507e7fac7a81b4bebef420d9da3d8a27e6757adb02242ab006e8c10286990454c8f2ae92638f41266966a4cedd54e4837089b72b
+  languageName: node
+  linkType: hard
+
 "string-width@npm:^4.1.0, string-width@npm:^4.2.0":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
@@ -153,7 +212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sub-package-3@workspace:sub-package-3"
   dependencies:
-    cliui-8: "npm:cliui@^8.0.1"
+    photo-frame: 1.0.1
   languageName: unknown
   linkType: soft
 
@@ -165,6 +224,20 @@ __metadata:
     cliui-9: "npm:cliui@9.0.1"
   languageName: unknown
   linkType: soft
+
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 46331c7d6016bf85b3e8f20c159d62f5ae471aba1eb3dc52fff35a0259d58dcc7d592d4cc4f00c5f9243fa738a11cfa48bd20203040d4a9e6bc25e807fab7ab3
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~7.10.0":
+  version: 7.10.0
+  resolution: "undici-types@npm:7.10.0"
+  checksum: 6917fcd8c80963919fe918952f9243a6749af0e3f759a39f8d2c2486144a66c86ae4125aebbce700b636cb1dcd45e85eb8c49c60d60738a97b63f0e89ef9b053
+  languageName: node
+  linkType: hard
 
 "wrap-ansi@npm:^7.0.0":
   version: 7.0.0
