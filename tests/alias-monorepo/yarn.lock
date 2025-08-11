@@ -35,7 +35,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cliui-8@npm:cliui@8.0.1, cliui@npm:^8.0.0, cliui@npm:^8.0.1":
+"cliui-8@npm:cliui@^8.0.0, cliui-8@npm:cliui@^8.0.1, cliui@npm:^8.0.0":
   version: 8.0.1
   resolution: "cliui@npm:8.0.1"
   dependencies:
@@ -149,11 +149,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"sub-package-3@workspace:sub-package-3":
+  version: 0.0.0-use.local
+  resolution: "sub-package-3@workspace:sub-package-3"
+  dependencies:
+    cliui-8: "npm:cliui@^8.0.1"
+  languageName: unknown
+  linkType: soft
+
 "sub-package@workspace:sub-package":
   version: 0.0.0-use.local
   resolution: "sub-package@workspace:sub-package"
   dependencies:
-    cliui-8: "npm:cliui@8.0.1"
+    cliui-8: "npm:cliui@^8.0.0"
     cliui-9: "npm:cliui@9.0.1"
   languageName: unknown
   linkType: soft
@@ -183,7 +191,5 @@ __metadata:
 "~dev@workspace:.":
   version: 0.0.0-use.local
   resolution: "~dev@workspace:."
-  dependencies:
-    cliui: ^8.0.1
   languageName: unknown
   linkType: soft

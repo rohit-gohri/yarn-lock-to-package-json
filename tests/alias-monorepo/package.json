@@ -4,10 +4,8 @@
   "workspaces": {
     "packages": [
       "./sub-package",
-      "./sub-package-2"
+      "./sub-package-2",
+      "./sub-package-3"
     ]
-  },
-  "dependencies": {
-    "cliui": "^8.0.1"
   }
 }
