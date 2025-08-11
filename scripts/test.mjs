@@ -22,6 +22,7 @@ const all = [
   "resolutions",
   "scoped",
   "alias-subdeps",
+  "alias-monorepo",
   "portal",
   "link",
   "same-resolution",
