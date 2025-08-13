@@ -61,7 +61,7 @@ const results = (
 
       console.log(prefix, chalk.blueBright('Updating lock file based on generated package.json.'))
 
-      const yarn = await $`cd tests/${test} && yarn`;
+      const yarn = await $`cd tests/${test} && yarn install --immutable`;
       if (verbose) {
         printWithPrefix(yarn, prefix);
       }
