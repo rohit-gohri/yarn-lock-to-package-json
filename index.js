@@ -5,7 +5,7 @@ const { parseSyml } = require("@yarnpkg/parsers");
 const supportedProtocols = ["patch", "npm", "portal", "link"];
 
 /**
- * @param {string} dep 
+ * @param {string} dep
  */
 const getDepName = (dep) => {
   let parts = dep.trim().split("@");
@@ -106,12 +106,26 @@ module.exports = function main() {
        * @type {Map<string, string[]>}
        */
       const dependencyMap = new Map();
+      /**
+       * @type {Map<string, string[]>}
+       */
+      const resolvedDependencyMap = new Map();
       lockJsonKey.forEach((dep) => {
+        // Ignore yarn's inbuilt applied patches as duplicates
+        if (dep.includes("builtin<compat/")) {
+          return;
+        }
+        // Ignore non dependency keys in json
+        if (lockJson[dep].resolution == null) {
+          return;
+        }
+        const resolvedDepName = getDepName(lockJson[dep].resolution);
+        if (!resolvedDependencyMap.has(resolvedDepName)) {
+          resolvedDependencyMap.set(resolvedDepName, []);
+        }
+        resolvedDependencyMap.get(resolvedDepName).push(dep);
+
         dep.split(",").forEach((dependency) => {
-          // Ignore yarn's inbuilt applied patches as duplicates
-          if (dependency.includes("builtin<compat/")) {
-            return;
-          }
           const name = getDepName(dependency);
           if (!dependencyMap.has(name)) {
             dependencyMap.set(name, []);
@@ -143,7 +157,7 @@ module.exports = function main() {
 
             return false;
           }
-          
+
           // Ignore if multiple versions of the same package are resolved to a single version
           // since resolutions overwrites these to a single version
           if (dependency.includes(", ")) {
@@ -151,8 +165,12 @@ module.exports = function main() {
           }
 
           const name = getDepName(dependency);
+          // we skip the resolved dependencies that is present multiple times in the lock file
+          if (resolvedDependencyMap.has(name) && resolvedDependencyMap.get(name).length > 1) {
+            return false;
+          }
           // we take the dependencies that is not present multiple times in the lock file
-          if (dependencyMap.get(name).length === 1) {
+          if (dependencyMap.has(name) && dependencyMap.get(name).length === 1) {
             return true;
           }
 
