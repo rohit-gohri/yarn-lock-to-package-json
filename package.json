@@ -1,6 +1,6 @@
 {
   "name": "yarn-lock-to-package-json",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "scripts": {
     "test": "yarn zx scripts/test.mjs"
   },

@@ -1,5 +1,11 @@
 # yarn-lock-to-package-json
 
+## 0.3.2
+
+### Patch Changes
+
+- [#66](https://github.com/rohit-gohri/yarn-lock-to-package-json/pull/66) [`b49c287`](https://github.com/rohit-gohri/yarn-lock-to-package-json/commit/b49c287d446dbe4f627ba9332d21d2f140bac59a) Thanks [@rohit-gohri](https://github.com/rohit-gohri)! - handle duplicate aliases being added to resolutions
+
 ## 0.3.1
 
 ### Patch Changes
