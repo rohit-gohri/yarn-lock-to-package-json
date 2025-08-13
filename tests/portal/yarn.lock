@@ -2,7 +2,8 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
+  version: 8
+  cacheKey: 10
 
 "a-local-portal-lib@portal:./a-local-portal-lib::locator=~dev%40workspace%3A.":
   version: 0.0.0-use.local
@@ -14,6 +15,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "~dev@workspace:."
   dependencies:
-    a-local-portal-lib: "*"
+    a-local-portal-lib: "npm:*"
   languageName: unknown
   linkType: soft
