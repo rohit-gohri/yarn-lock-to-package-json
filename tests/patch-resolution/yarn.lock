@@ -2,15 +2,15 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
-  cacheKey: 8
+  version: 8
+  cacheKey: 10
 
 "uuid@npm:9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:
     uuid: dist/bin/uuid
-  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
+  checksum: 10/9d0b6adb72b736e36f2b1b53da0d559125ba3e39d913b6072f6f033e0c87835b414f0836b45bcfaf2bdf698f92297fea1c3cc19b0b258bc182c9c43cc0fab9f2
   languageName: node
   linkType: hard
 
@@ -19,7 +19,7 @@ __metadata:
   resolution: "uuid@patch:uuid@npm%3A9.0.1#./.yarn/patches/uuid-npm-9.0.1-39a8442bc6.patch::version=9.0.1&hash=98efc2&locator=~dev%40workspace%3A."
   bin:
     uuid: dist/bin/uuid
-  checksum: 9c0db3d0a4bef786384f0c3d095bc218b87679f50159aac8b9650a8b50c9ee9cd491db674db5d87ab764f5d18a955bb8d8e8a34f075474ae7ed3d484d8c43a71
+  checksum: 10/e83d0d45a03923fb6555a5006bdf2a93dafd6c5cd795992942729365fd78125075b2db5d37ddf646ac8fd2801e2c019b928eefedc6bfe8b990328e93eecf5fb8
   languageName: node
   linkType: hard
 
@@ -27,6 +27,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "~dev@workspace:."
   dependencies:
-    uuid: ^9.0.0
+    uuid: "npm:^9.0.0"
   languageName: unknown
   linkType: soft

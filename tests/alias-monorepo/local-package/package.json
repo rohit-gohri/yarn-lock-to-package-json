@@ -1,0 +1,7 @@
+{
+  "name": "local-package",
+  "version": "0.0.0",
+  "dependencies": {
+    "local-package-2": "workspace:*"
+  }
+}
