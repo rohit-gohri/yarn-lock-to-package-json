@@ -9,6 +9,5 @@
       "./sub-package-2",
       "./sub-package-3"
     ]
-  },
-  "packageManager": "yarn@4.9.2"
+  }
 }
