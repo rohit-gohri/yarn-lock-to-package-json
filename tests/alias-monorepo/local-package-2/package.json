@@ -1,0 +1,7 @@
+{
+  "name": "local-package-2",
+  "version": "0.0.0",
+  "dependencies": {
+    "cliui": "^7.0.3"
+  }
+}

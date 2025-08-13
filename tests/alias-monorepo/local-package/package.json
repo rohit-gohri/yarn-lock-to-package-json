@@ -2,6 +2,7 @@
   "name": "local-package",
   "version": "0.0.0",
   "dependencies": {
-    "cliui": "^8.0.0"
+    "cliui": "^8.0.0",
+    "local-package-2": "workspace:*"
   }
 }
