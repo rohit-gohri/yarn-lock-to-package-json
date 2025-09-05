@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.2",
+    "@changesets/cli": "^2.29.6",
     "zx": "^8.8.1"
   },
   "packageManager": "yarn@4.9.2",
