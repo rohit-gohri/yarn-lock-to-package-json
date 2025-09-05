@@ -1,5 +1,11 @@
 # yarn-lock-to-package-json
 
+## 0.3.3
+
+### Patch Changes
+
+- [#72](https://github.com/rohit-gohri/yarn-lock-to-package-json/pull/72) [`b0243da`](https://github.com/rohit-gohri/yarn-lock-to-package-json/commit/b0243daf6856e98812cfb74da644f0cff2edc8b4) Thanks [@rohit-gohri](https://github.com/rohit-gohri)! - fix: add peer meta support
+
 ## 0.3.2
 
 ### Patch Changes
