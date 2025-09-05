@@ -78,9 +78,20 @@ module.exports = function main() {
       private: true,
       dependencies,
       peerDependencies,
-      peerDependenciesMeta,
       bin,
     };
+
+    if(peerDependenciesMeta) {
+      packageJson.peerDependenciesMeta = Object.entries(peerDependenciesMeta).reduce((res, [key, value]) => {
+        res[key] = value;
+        if (value.optional === 'true') {
+          // yarn.lock has string "true" rather than boolean
+          res[key].optional = true
+        }
+
+        return res;
+      }, {});
+    }
 
     if (dependenciesMeta) {
       /**

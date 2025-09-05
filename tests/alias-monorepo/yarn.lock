@@ -125,6 +125,11 @@ __metadata:
   resolution: "local-package@workspace:local-package"
   dependencies:
     local-package-2: "workspace:*"
+  peerDependencies:
+    react: ^19.1.1
+  peerDependenciesMeta:
+    react:
+      optional: true
   languageName: unknown
   linkType: soft
 
