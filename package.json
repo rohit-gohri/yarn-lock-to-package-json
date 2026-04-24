@@ -12,7 +12,7 @@
     "@changesets/cli": "^2.29.7",
     "zx": "^8.8.4"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.14.1",
   "main": "index.js",
   "bin": "cli.js",
   "license": "MIT",
