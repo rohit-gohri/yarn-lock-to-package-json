@@ -1,0 +1,9 @@
+{
+  "name": "sub-package",
+  "version": "0.0.0",
+  "description": "**DON'T COMMIT** Generated file for caching",
+  "private": true,
+  "dependencies": {
+    "tiged": "patch:tiged@npm%3A2.12.4#../.yarn/patches/tiged-npm-2.12.4-b64a6b9192.patch"
+  }
+}

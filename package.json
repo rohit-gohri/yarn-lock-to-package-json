@@ -1,6 +1,6 @@
 {
   "name": "yarn-lock-to-package-json",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "scripts": {
     "test": "yarn zx scripts/test.mjs"
   },
@@ -12,7 +12,7 @@
     "@changesets/cli": "^2.29.7",
     "zx": "^8.8.4"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.14.1",
   "main": "index.js",
   "bin": "cli.js",
   "license": "MIT",
