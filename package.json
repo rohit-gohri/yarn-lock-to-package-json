@@ -9,9 +9,7 @@
     "@yarnpkg/parsers": "npm:^3.0.3",
     "zx": "npm:^8.8.4"
   },
-  "bin": {
-    "yarn-lock-to-package-json": "cli.js"
-  },
+  "bin": "cli.js",
   "resolutions": {
     "@babel/runtime": "^7.5.5",
     "@changesets/apply-release-plan": "^7.0.13",
@@ -113,5 +111,6 @@
     "whatwg-url": "^5.0.0",
     "which": "^2.0.1",
     "zx": "^8.8.4"
-  }
+  },
+  "packageManager": "yarn@4.14.1"
 }
