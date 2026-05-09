@@ -18,6 +18,7 @@ const all = [
   "bin",
   "patch",
   "patch-monorepo",
+  "patch-monorepo-multi-version",
   "patch-resolution",
   "resolutions",
   "scoped",

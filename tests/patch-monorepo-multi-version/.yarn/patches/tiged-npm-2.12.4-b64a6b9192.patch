@@ -1,0 +1,8 @@
+diff --git a/bin.js b/bin.js
+index 04cdbc4d691b0d302892ba90bcaaa313b4b52e34..9256c9d30fabb770ac950d2ac84ff880c0f52ebf 100755
+--- a/bin.js
++++ b/bin.js
+@@ -1,2 +1,3 @@
+ #!/usr/bin/env node
++
+ require('./src/bin.js');
