@@ -106,6 +106,7 @@ module.exports = function main() {
       Object.entries(dependenciesMeta).forEach(([key, value]) => {
         const normalizedMeta = Object.entries(value).reduce(
           (res, [metaKey, metaValue]) => {
+            // yarn.lock can contain boolean-like values as strings
             if (metaValue === "true") {
               res[metaKey] = true;
             } else if (metaValue === "false") {
