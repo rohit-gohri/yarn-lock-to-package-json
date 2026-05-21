@@ -98,11 +98,47 @@ module.exports = function main() {
        * @type {Record<string, any>}
        */
       let optionalDependencies = {};
-      Object.keys(dependenciesMeta).forEach((key) => {
-        optionalDependencies[key] = dependencies[key];
-        delete dependencies[key];
+      /**
+       * @type {Record<string, any>}
+       */
+      let packageDependenciesMeta = {};
+
+      Object.entries(dependenciesMeta).forEach(([key, value]) => {
+        const normalizedMeta = Object.entries(value).reduce(
+          (res, [metaKey, metaValue]) => {
+            // yarn.lock can contain boolean-like values as strings
+            if (metaValue === "true") {
+              res[metaKey] = true;
+            } else if (metaValue === "false") {
+              res[metaKey] = false;
+            } else {
+              res[metaKey] = metaValue;
+            }
+            return res;
+          },
+          {}
+        );
+
+        if (normalizedMeta.optional === true) {
+          if (dependencies && dependencies[key]) {
+            optionalDependencies[key] = dependencies[key];
+            delete dependencies[key];
+          }
+          delete normalizedMeta.optional;
+        }
+
+        if (Object.keys(normalizedMeta).length > 0) {
+          packageDependenciesMeta[key] = normalizedMeta;
+        }
       });
-      packageJson.optionalDependencies = optionalDependencies;
+
+      if (Object.keys(optionalDependencies).length > 0) {
+        packageJson.optionalDependencies = optionalDependencies;
+      }
+
+      if (Object.keys(packageDependenciesMeta).length > 0) {
+        packageJson.dependenciesMeta = packageDependenciesMeta;
+      }
     }
 
     if (dirPath === ".") {
