@@ -1,5 +1,11 @@
 # yarn-lock-to-package-json
 
+## 0.3.5
+
+### Patch Changes
+
+- [#95](https://github.com/rohit-gohri/yarn-lock-to-package-json/pull/95) [`0f1f7f9`](https://github.com/rohit-gohri/yarn-lock-to-package-json/commit/0f1f7f9dc1223a3e1ce80084524223054e2bcb8e) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Preserve `dependenciesMeta.built` when `enableScripts: false` and add regression fixture
+
 ## 0.3.3
 
 ### Patch Changes
