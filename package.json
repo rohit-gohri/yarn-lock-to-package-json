@@ -2,7 +2,8 @@
   "name": "yarn-lock-to-package-json",
   "version": "0.3.5",
   "scripts": {
-    "test": "yarn zx scripts/test.mjs"
+    "test": "yarn zx scripts/test.mjs",
+    "release": "changeset publish"
   },
   "dependencies": {
     "@yarnpkg/parsers": "^3.0.3"
