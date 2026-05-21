@@ -27,6 +27,7 @@ const all = [
   "portal",
   "link",
   "same-resolution",
+  "dependencies-meta-built",
 ];
 
 const tests = all.filter((test) => !only || test === only);
