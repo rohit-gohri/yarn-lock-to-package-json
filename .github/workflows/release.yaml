@@ -41,7 +41,8 @@ jobs:
         id: changesets
         uses: changesets/action@v2
         with:
-          publish: npm run release
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          publish-script: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
